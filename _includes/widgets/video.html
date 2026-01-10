@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.my-3 { margin: 1rem 0; }
+.bg-white { background-color: white; }
+.shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.rounded-sm { border-radius: 0.25rem; }
+.p-3 { padding: 1rem; }
+.mb-0 { margin-bottom: 0; }
+.px-3 { padding-left: 1rem; padding-right: 1rem; }
+.pb-1 { padding-bottom: 0.25rem; }
+.border-bottom { border-bottom: 1px solid #dee2e6; }
+.border-gray { border-color: #6c757d; }
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    position: relative;
+}
+
+.video-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #eee;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.video-nav:hover {
+    background: rgba(240, 240, 240, 0.95);
+    transform: scale(1.1);
+}
+
+.video-nav.left {
+    left: 10px;
+}
+
+.video-nav.right {
+    right: 10px;
+}
+
+.video-slide-wrapper {
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.video-slides-container {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.video-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 315px;
+    border: none;
+    display: block;
+}
+
+/* 添加指示器 */
+.video-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #007bff;
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: #555;
+}
+
+/* 添加滑动进入/退出的视觉效果 */
+.video-slide {
+    opacity: 0.7;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.video-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 触摸滑动支持 */
+.video-slide-wrapper {
+    touch-action: pan-y;
+    user-select: none;
+}
+
+@media (max-width: 600px) {
+    .video-slide-wrapper {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+    
+    .video-slide {
+        height: auto;
+        aspect-ratio: 16/9;
+        min-height: 200px;
+    }
+    
+    .video-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .video-nav.left {
+        left: 5px;
+    }
+    
+    .video-nav.right {
+        right: 5px;
+    }
+}
+
+/* 加载动画 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.video-container {
+    animation: slideIn 0.8s ease-out;
+}
+</style>
+</head>
+<body>
+
+<div class="my-3 bg-white shadow-sm rounded-sm">
+    <h6 class="p-3 mb-0 border-bottom border-gray">
+        <i class="fas fa-rss"></i> Video
+    </h6>
+    <div class="px-3 pb-1 video-container">
+        <button class="video-nav left" id="prevVideo" aria-label="Previous Video">&#8249;</button>
+        
+        <div class="video-slide-wrapper" id="videoWrapper">
+            <div class="video-slides-container" id="slidesContainer">
+                <iframe class="video-slide" width="560" height="315" 
+                    src="https://www.youtube.com/embed/p3XO6bUBvpM?si=nZljjmorwvCY5C1g" 
+                    title="YouTube video 1" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
+                    
+                <iframe class="video-slide" width="560" height="315" 
+                    src="https://www.youtube.com/embed/9-EQmDjRLHQ?si=EuVqns8LDZLwERgJ" 
+                    title="YouTube video 2" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <button class="video-nav right" id="nextVideo" aria-label="Next Video">&#8250;</button>
+    </div>
+    
+    <!-- 指示器 -->
+    <div class="video-indicators" id="indicators"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const slidesContainer = document.getElementById('slidesContainer');
+    const videoWrapper = document.getElementById('videoWrapper');
+    const indicators = document.getElementById('indicators');
+    const videos = document.querySelectorAll('.video-slide');
+    const prevBtn = document.getElementById('prevVideo');
+    const nextBtn = document.getElementById('nextVideo');
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // 创建指示器
+    function createIndicators() {
+        indicators.innerHTML = '';
+        videos.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicators.appendChild(indicator);
+        });
+    }
+
+    // 更新指示器
+    function updateIndicators() {
+        const indicatorElements = indicators.querySelectorAll('.indicator');
+        indicatorElements.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // 更新视频状态
+    function updateVideoStates() {
+        videos.forEach((video, index) => {
+            video.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // 滑动到指定幻灯片
+    function goToSlide(index, direction = 'auto') {
+        if (isAnimating || index === currentIndex) return;
+        
+        isAnimating = true;
+        currentIndex = index;
+        
+        const translateX = -currentIndex * 100;
+        slidesContainer.style.transform = `translateX(${translateX}%)`;
+        
+        updateIndicators();
+        updateVideoStates();
+        
+        // 动画完成后重置状态
+        setTimeout(() => {
+            isAnimating = false;
+        }, 600);
+    }
+
+    // 上一个视频
+    function prevVideo() {
+        const newIndex = currentIndex === 0 ? videos.length - 1 : currentIndex - 1;
+        goToSlide(newIndex, 'prev');
+    }
+
+    // 下一个视频
+    function nextVideo() {
+        const newIndex = currentIndex === videos.length - 1 ? 0 : currentIndex + 1;
+        goToSlide(newIndex, 'next');
+    }
+
+    // 触摸/鼠标事件处理
+    function handleStart(e) {
+        if (isAnimating) return;
+        isDragging = true;
+        startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+        slidesContainer.style.transition = 'none';
+    }
+
+    function handleMove(e) {
+        if (!isDragging || isAnimating) return;
+        
+        e.preventDefault();
+        currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+        const diffX = currentX - startX;
+        const translateX = -currentIndex * 100 + (diffX / videoWrapper.offsetWidth) * 100;
+        
+        slidesContainer.style.transform = `translateX(${translateX}%)`;
+    }
+
+    function handleEnd(e) {
+        if (!isDragging || isAnimating) return;
+        
+        isDragging = false;
+        slidesContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        const diffX = currentX - startX;
+        const threshold = videoWrapper.offsetWidth * 0.2; // 20% 的滑动距离触发切换
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0 && currentIndex > 0) {
+                prevVideo();
+            } else if (diffX < 0 && currentIndex < videos.length - 1) {
+                nextVideo();
+            } else {
+                // 回弹到当前位置
+                goToSlide(currentIndex);
+            }
+        } else {
+            // 回弹到当前位置
+            goToSlide(currentIndex);
+        }
+    }
+
+    // 事件监听器
+    prevBtn.addEventListener('click', prevVideo);
+    nextBtn.addEventListener('click', nextVideo);
+
+    // 触摸事件
+    videoWrapper.addEventListener('touchstart', handleStart, { passive: false });
+    videoWrapper.addEventListener('touchmove', handleMove, { passive: false });
+    videoWrapper.addEventListener('touchend', handleEnd);
+
+    // 鼠标事件（用于桌面端拖拽）
+    videoWrapper.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+
+    // 键盘支持
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            prevVideo();
+        } else if (e.key === 'ArrowRight') {
+            nextVideo();
+        }
+    });
+
+    // 自动播放（可选）
+    let autoPlayInterval;
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextVideo, 5000); // 5秒自动切换
+    }
+    
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // 鼠标悬停时停止自动播放
+    videoWrapper.addEventListener('mouseenter', stopAutoPlay);
+    videoWrapper.addEventListener('mouseleave', startAutoPlay);
+
+    // 初始化
+    createIndicators();
+    updateIndicators();
+    updateVideoStates();
+    
+    // 启用自动播放（可选，如果不需要可以注释掉）
+    // startAutoPlay();
+});
+</script>
+
+</body>
+</html>

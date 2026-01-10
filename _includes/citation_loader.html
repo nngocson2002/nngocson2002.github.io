@@ -1,0 +1,104 @@
+<style>
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.pub-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #0E2C6E;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.7em;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.badge-publication {
+    font-size: 0.75rem;
+    border-radius: 10rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.badge-pill {
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+}
+
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.citation-badge {
+    display: inline-block;
+    margin-left: 0.25rem;
+}
+
+.citation-badge a {
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.citation-badge a:hover {
+    opacity: 0.85;
+}
+</style>
+
+<script>
+(function() {
+    if (window._citationsLoaded) return;
+    window._citationsLoaded = true;
+    
+    async function loadCitations() {
+        try {
+            const response = await fetch('{{ "/assets/data/publications.json" | relative_url }}');
+            if (!response.ok) return;
+            const data = await response.json();
+            
+            document.querySelectorAll('[data-paper-id]').forEach(el => {
+                const id = el.getAttribute('data-paper-id');
+                const badge = el.querySelector('.citation-badge');
+                if (!badge) return;
+                
+                const paper = data.papers.find(p => p.id === id);
+                if (!paper || paper.citations == null) {
+                    badge.style.display = 'none';
+                    return;
+                }
+                
+                const s2Id = paper.semantic_scholar?.paper_id;
+                const count = paper.citations;
+                const label = count === 1 ? 'citation' : 'citations';
+                
+                if (s2Id) {
+                    badge.innerHTML = `<a href="https://www.semanticscholar.org/paper/${s2Id}" target="_blank" class="badge badge-pill badge-info" style="color:#fff;text-decoration:none;font-size:0.75rem;"><i class="fas fa-quote-right"></i> ${count} ${label}</a>`;
+                } else {
+                    badge.innerHTML = `<span class="badge badge-pill badge-info" style="font-size:0.75rem;"><i class="fas fa-quote-right"></i> ${count} ${label}</span>`;
+                }
+            });
+        } catch (e) {
+            console.error('Citation load error:', e);
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadCitations);
+    } else {
+        loadCitations();
+    }
+})();
+</script>

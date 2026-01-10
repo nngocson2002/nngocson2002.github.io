@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-01-10T17:11:25.116Z",
+  "total_citations": 13,
+  "papers": [
+    {
+      "id": "2025-pub-7",
+      "title": "DiFlowDubber: Discrete Flow Matching for Automated Video Dubbing via Cross-Modal Alignment and Synchronization",
+      "citations": null,
+      "semantic_scholar": null
+    },
+    {
+      "id": "2025-pub-6",
+      "title": "DiFlow-TTS: Compact and Low-Latency Zero-Shot Text-to-Speech with Factorized Discrete Flow Matching",
+      "citations": null,
+      "semantic_scholar": {
+        "paper_id": "e7a6717265dfb839741d0f500b1076a6ba8d2178",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2509-09631",
+          "DOI": "10.48550/arXiv.2509.09631",
+          "CorpusId": 281252785
+        }
+      }
+    },
+    {
+      "id": "2025-pub-5",
+      "title": "Precise Video-to-Audio Generation with Cross-Modal Alignment in Latent Space",
+      "citations": null,
+      "semantic_scholar": null
+    },
+    {
+      "id": "2025-pub-4",
+      "title": "Flamed-TTS: Flow Matching Attention-Free Models for Efficient Generating and Dynamic Pacing Zero-shot Text-to-Speech",
+      "citations": null,
+      "semantic_scholar": {
+        "paper_id": "d022cf010f9c9e6df5a9d6a77589c001ccf2d1c5",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2510-02848",
+          "ArXiv": "2510.02848",
+          "DOI": "10.48550/arXiv.2510.02848",
+          "CorpusId": 281829730
+        }
+      }
+    },
+    {
+      "id": "2025-pub-3",
+      "title": "DuFal: Dual-Frequency-Aware Learning for High-Fidelity Extremely Sparse-view CBCT Reconstruction",
+      "citations": null,
+      "semantic_scholar": null
+    },
+    {
+      "id": "2025-pub-2",
+      "title": "CT-ScanGaze: A Dataset and Baselines for 3D Volumetric Scanpath Modeling",
+      "citations": 2,
+      "semantic_scholar": {
+        "paper_id": "ab6afa7cdf754aec171a916f89f9f9c776d3dda8",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2507-12591",
+          "DOI": "10.48550/arXiv.2507.12591",
+          "CorpusId": 280671832
+        }
+      }
+    },
+    {
+      "id": "2025-pub-1",
+      "title": "OZSpeech: One-step Zero-shot Speech Synthesis with Learned-Prior-Conditioned Flow Matching",
+      "citations": 4,
+      "semantic_scholar": {
+        "paper_id": "5ac61150b1e92931663e3f28c41ad4ba7dab8873",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2505-12800",
+          "ArXiv": "2505.12800",
+          "DOI": "10.48550/arXiv.2505.12800",
+          "CorpusId": 278739803
+        }
+      }
+    },
+    {
+      "id": "2024-pub-2",
+      "title": "LiteGPT: Large Vision-Language Model for Joint Chest X-ray Localization and Classification Task",
+      "citations": 6,
+      "semantic_scholar": {
+        "paper_id": "d8b48f7668033526adced3df826a4b87b74c2d7a",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2407-12064",
+          "ArXiv": "2407.12064",
+          "DOI": "10.48550/arXiv.2407.12064",
+          "CorpusId": 271244864
+        }
+      }
+    },
+    {
+      "id": "2024-pub-1",
+      "title": "Advancing Vietnamese Visual Question Answering with Transformer and Convolutional Integration",
+      "citations": 1,
+      "semantic_scholar": {
+        "paper_id": "afbe8a4452101cad944a3c101b7819de73c8c02c",
+        "external_ids": {
+          "DBLP": "journals/corr/abs-2407-21229",
+          "ArXiv": "2407.21229",
+          "DOI": "10.1016/j.compeleceng.2024.109474",
+          "CorpusId": 271549897
+        }
+      }
+    }
+  ]
+}

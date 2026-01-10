@@ -1,0 +1,47 @@
+primary_name: "Ngoc-Son Nguyen"
+secondary_name: ""
+navbar_name: ""
+
+positions:
+- logo: /assets/images/badges/fpt.png  # Logo is optional
+  name: AI Reserach Resident
+# - name: Position 2 without logo
+
+
+email: "sonnn45@fpt.com"
+cv_link: /assets/files/resume2025.pdf
+gscholar: UXp8NQkAAAAJ
+github: nngocson2002
+# twitter: your_twitter_id
+# wechat_qrcode: /assets/images/etc/wechat.jpg
+# wechat_prompt: >-
+#   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
+linkedin: nngocson
+# orcid: 0000-0000-0000-0000
+
+short_bio: >-
+  <p>
+    I am Son Nguyen, an AI Research Resident at the <a href="https://fptsoftware.com/">FPT Software AI Center</a>, working under the supervision of <a href="https://scholar.google.com/citations?user=rJe1704AAAAJ">Dr. Van Nguyen</a>, <a href="https://scholar.google.com/citations?user=JiKBo6UAAAAJ&hl=vi">Prof. Truong-Son Hy</a>, and <a href="https://scholar.google.com/citations?user=8ck0k_UAAAAJ&hl=en">Prof. Ngan Le</a>.
+    I received my B.Sc. degree in Data Science from the <a href="https://en.hcmus.edu.vn/">University of Science, Vietnam National University Ho Chi Minh City</a>, in 2024, where I was advised by <a href="https://scholar.google.com/citations?user=aVmva7MAAAAJ&hl=vi">Dr. Tung Le</a>. <br>
+    My research interests include multimodal learning and generative models, particularly text-to-audio generation, video-to-speech synthesis, and visual voice cloning.
+    I am also interested in medical imaging, with a focus on vision-language models and image synthesis.
+  </p>
+
+portrait_url: /assets/images/photos/profile.jpg
+# portrait_caption: >-
+#   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+
+education:
+- name: University of Science, Viet Nam National University, Ho Chi Minh City
+  logo: /assets/images/badges/hcmus.png
+  position: B.Sc. in Data Science
+  date: Sep. 2020 - Dec. 2024
+
+
+awards:
+- name: Outstanding Graduate in Data Science, University of Science
+  date: 2024
+- name: Outstanding Achievement in Science and Technology Research
+  date: 2024
+- name: University Scholarship for Excellent Achievement in Academic Semesters
+  date: 2020 - 2023
