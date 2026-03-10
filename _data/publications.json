@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-01-10T17:11:25.116Z",
-  "total_citations": 13,
+  "generated_at": "2026-03-10T16:24:08.976Z",
+  "total_citations": 17,
   "papers": [
     {
-      "id": "2025-pub-7",
+      "id": "2026-pub-1",
       "title": "DiFlowDubber: Discrete Flow Matching for Automated Video Dubbing via Cross-Modal Alignment and Synchronization",
       "citations": null,
       "semantic_scholar": null
@@ -44,13 +44,21 @@
     {
       "id": "2025-pub-3",
       "title": "DuFal: Dual-Frequency-Aware Learning for High-Fidelity Extremely Sparse-view CBCT Reconstruction",
-      "citations": null,
-      "semantic_scholar": null
+      "citations": 0,
+      "semantic_scholar": {
+        "paper_id": "6fcf7b59415cf57e1f3937e436a9a5de894cab2b",
+        "external_ids": {
+          "ArXiv": "2601.15416",
+          "DBLP": "journals/corr/abs-2601-15416",
+          "DOI": "10.48550/arXiv.2601.15416",
+          "CorpusId": 284740830
+        }
+      }
     },
     {
       "id": "2025-pub-2",
       "title": "CT-ScanGaze: A Dataset and Baselines for 3D Volumetric Scanpath Modeling",
-      "citations": 2,
+      "citations": 3,
       "semantic_scholar": {
         "paper_id": "ab6afa7cdf754aec171a916f89f9f9c776d3dda8",
         "external_ids": {
@@ -63,7 +71,7 @@
     {
       "id": "2025-pub-1",
       "title": "OZSpeech: One-step Zero-shot Speech Synthesis with Learned-Prior-Conditioned Flow Matching",
-      "citations": 4,
+      "citations": 6,
       "semantic_scholar": {
         "paper_id": "5ac61150b1e92931663e3f28c41ad4ba7dab8873",
         "external_ids": {
@@ -77,7 +85,7 @@
     {
       "id": "2024-pub-2",
       "title": "LiteGPT: Large Vision-Language Model for Joint Chest X-ray Localization and Classification Task",
-      "citations": 6,
+      "citations": 8,
       "semantic_scholar": {
         "paper_id": "d8b48f7668033526adced3df826a4b87b74c2d7a",
         "external_ids": {
@@ -91,16 +99,8 @@
     {
       "id": "2024-pub-1",
       "title": "Advancing Vietnamese Visual Question Answering with Transformer and Convolutional Integration",
-      "citations": 1,
-      "semantic_scholar": {
-        "paper_id": "afbe8a4452101cad944a3c101b7819de73c8c02c",
-        "external_ids": {
-          "DBLP": "journals/corr/abs-2407-21229",
-          "ArXiv": "2407.21229",
-          "DOI": "10.1016/j.compeleceng.2024.109474",
-          "CorpusId": 271549897
-        }
-      }
+      "citations": null,
+      "semantic_scholar": null
     }
   ]
 }
