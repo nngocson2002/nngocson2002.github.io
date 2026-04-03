@@ -663,7 +663,7 @@ td.gif {
             </h2>
                 
         </div>
-        <div><center><h5>&mdash;&mdash;&mdash; <b>CVPR 2026 Findings</b> &mdash;&mdash;&mdash;
+        <div><center><h5>🌟 <b>CVPR 2026 Findings</b> 🌟
         </h5></center></div>
         
         <div class="container" style="max-width: 850px;font-size: 18px;text-align: center;">
@@ -711,9 +711,9 @@ td.gif {
     <div class="container" style="max-width: 768px; text-align:center;">
         <div class="row" style="max-width: 768px;">
             <div class="col-md-12">
-                <h2>📜 Abstract</h2>
+                <h2>💡 Abstract</h2>
                 <p style="text-align: justify;">
-                    Video dubbing has broad applications in filmmaking, multimedia creation, and assistive speech technology. Existing approaches either train directly on limited dubbing datasets or adopt a two-stage pipeline that adapts pre-trained text-to-speech (TTS) models, which often struggle to produce expressive prosody, rich acoustic characteristics, and precise synchronization. To address these issues, we propose DiFlowDubber with a novel two-stage training framework that effectively transfers knowledge from a pre-trained TTS model to video-driven dubbing, with a discrete flow matching generative backbone. Specifically, we design a FaPro module that captures global prosody and stylistic cues from facial expressions and leverages this information to guide the modeling of subsequent speech attributes. To ensure precise speech-lip synchronization, we introduce a Synchronizer module that bridges the modality gap among text, video, and speech, thereby improving cross-modal alignment and generating speech that is temporally synchronized with lip movements. Experiments on two primary benchmark datasets demonstrate that DiFlowDubber outperforms previous methods across multiple metrics.
+                    Video dubbing requires content accuracy, expressive prosody, high-quality acoustics, and precise lip synchronization, yet existing approaches struggle on all four fronts. To address these issues, we propose <strong>DiFlowDubber</strong>, the first video dubbing framework built upon a discrete flow matching backbone with a novel two-stage training strategy. In the first stage, a zero-shot text-to-speech (TTS) system is pre-trained on large-scale corpora, where a deterministic architecture captures linguistic structures, and the Discrete Flow-based Prosody-Acoustic (DFPA) module models expressive prosody and realistic acoustic characteristics. In the second stage, we propose the Content-Consistent Temporal Adaptation (CCTA) to transfer TTS knowledge to the dubbing domain: its Synchronizer enforces cross-modal alignment for lip-synchronized speech. Complementarily, the Face-to-Prosody Mapper (FaPro) conditions prosody on facial expressions, whose outputs are then fused with those of the Synchronizer to construct rich, fine-grained multimodal embeddings that capture prosody-content correlations, guiding the DFPA to generate expressive prosody and acoustic tokens for content-consistent speech. Experiments on two benchmark datasets demonstrate that DiFlowDubber outperforms prior methods across multiple evaluation metrics.
                 </p>
 
             </div>
@@ -736,7 +736,7 @@ td.gif {
             <div class="col-md-6" style="padding: 10px;">
                 <img src="./images/diflowdubber.png" alt="Overall framework of DiFlowDubber" class="figure-hover" style="width: 100%;">
                 <p style="text-align: justify; margin-top: 10px; font-size: 0.9em; color: #555;">
-                    <strong>Figure 2:</strong> Pipeline of the proposed DiFlowDubber. The first stage performs zero-shot TTS pre-training, where a simple deterministic content modeling architecture efficiently captures linguistic structure (orange dashed box). For prosody and acoustic attributes, we adopt the (b) <em>Discrete Flow-Based Prosody-Acoustic (DFPA)</em> module to model expressive prosodic variations and realistic acoustic diversity from the corpus. In the second stage, the model is adapted to V2C task. The (a) <em>Content-Consistent Temporal Adaptation (CCTA)</em> module transfers consistent content knowledge from the TTS domain and generates temporally aligned content representations, while the <em>FaPro</em> module extracts a global prosody prior from facial expression cues. The DFPA module then models the joint distribution of prosody and acoustic tokens conditioned on the prosody prior and latent content representations.
+                    <strong>Figure 2:</strong> Detailed of DiFlowDubber Pipeline. Our framework is a two-stage pipeline. The first stage performs zero-shot TTS pre-training, where a simple deterministic content modeling architecture efficiently captures linguistic structures (orange dashed box). For prosody and acoustic attributes, we adopt <strong>(b)</strong> <em>Discrete Flow-based Prosody-Acoustic</em> (DFPA) module to model expressive prosodic variations and realistic acoustic diversity from the corpus. In the second stage, the model is adapted to the video dubbing task, where <strong>(a)</strong> <em>Content-Consistent Temporal Adaptation</em> module transfers consistent content knowledge from the TTS domain and generates temporally aligned content representations. Meanwhile, FaPro extracts a global prosody prior from facial expression cues. The DFPA module then models the joint distribution of prosody and acoustic tokens conditioned on the global prosody prior, latent content representations, and speaker embedding.
                 </p>
             </div>
         </div>
