@@ -1,5 +1,7 @@
 pages:
 - name: Home
   url: /
+  icon: fas fa-house
 - name: Publications
   url: /publications
+  icon: fas fa-book-open

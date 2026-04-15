@@ -9,9 +9,14 @@
             <ul class="navbar-nav ml-auto">
                 {% for item in site.data.navigation.pages %}
                 <li class="nav-item {% if item.name == page.navbar_title %}active{% endif %}">
-                    <a class="nav-link" href="{{ item.url | relative_url }}">{{ item.name }}</a>
+                    <a class="nav-link" href="{{ item.url | relative_url }}">{% if item.icon %}<i class="{{ item.icon }} mr-1"></i>{% endif %}{{ item.name }}</a>
                 </li>
                 {% endfor %}
+                <li class="nav-item ml-2">
+                    <button id="theme-toggle" class="btn btn-sm theme-toggle-btn" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>

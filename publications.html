@@ -6,19 +6,41 @@ body_attr: >-
   data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
 
-{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
+{% assign all_pubs = site.publications | sort: "date" | reverse %}
+{% assign preprint_venues = "Under Review,arXiv" | split: "," %}
+{% assign under_review = "" | split: "" %}
+{% assign published = "" | split: "" %}
+{% for item in all_pubs %}
+  {% if preprint_venues contains item.venue %}
+    {% assign under_review = under_review | push: item %}
+  {% else %}
+    {% assign published = published | push: item %}
+  {% endif %}
+{% endfor %}
+{% assign pubs_by_year = published | group_by_exp: "item", "item.date | date: '%Y'" %}
 
 <div class="row">
     <div class="col-12 col-lg-10">
+
         {% for year in pubs_by_year %}
         {% assign num_papers = year.items | size %}
-        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <div class="my-0 p-0 bg-white shadow-sm rounded-sm">
+        <h2 class="pt-4" id="year-{{ year.name }}" data-aos="fade-up">{{ year.name }}</h2>
+        <div class="my-0 p-0 bg-white shadow-sm rounded-sm" data-aos="fade-up">
             {% for item in year.items %}
                 {% include widgets/publication_item.html item=item %}
             {% endfor %}
         </div>
         {% endfor %}
+
+        {% if under_review.size > 0 %}
+        <h2 class="pt-4" id="year-preprint" data-aos="fade-up">Preprints & Under Review</h2>
+        <div class="my-0 p-0 bg-white shadow-sm rounded-sm" data-aos="fade-up">
+            {% for item in under_review %}
+                {% include widgets/publication_item.html item=item %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
     </div>
 
     <div class="col-2 d-none d-lg-block">
@@ -26,6 +48,9 @@ body_attr: >-
             {% for year in pubs_by_year %}
             <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
             {% endfor %}
+            {% if under_review.size > 0 %}
+            <a class="nav-link d-block" href="#year-preprint" style="white-space: nowrap;">Preprints & Under Review</a>
+            {% endif %}
         </div>
     </div>
 
