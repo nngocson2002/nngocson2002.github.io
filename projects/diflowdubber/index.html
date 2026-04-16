@@ -467,6 +467,56 @@ td.gif {
     }
 }
 
+/* Sliding underline for author links */
+.author-link {
+    position: relative;
+    text-decoration: none;
+}
+.author-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+}
+.author-link:hover::after {
+    transform: scaleX(1);
+}
+.author-link:hover {
+    text-decoration: none;
+}
+
+/* Shimmer effect for CVPR badge */
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+.cvpr-badge {
+    display: inline-block;
+    background: linear-gradient(
+        100deg,
+        #1a73e8 0%,
+        #1a73e8 35%,
+        #6db3ff 50%,
+        #1a73e8 65%,
+        #1a73e8 100%
+    );
+    background-size: 200% auto;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 8px 22px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 12px rgba(26, 115, 232, 0.4);
+    animation: shimmer 2.4s linear infinite;
+}
+
 /* Neon hover effect */
 .neon-hover {
     cursor: pointer;
@@ -653,35 +703,36 @@ td.gif {
 
 <body>
     <div class="highlight-clean" style="padding-top: 30px;padding-bottom:10px;">
-        <div class="container" style="max-width: 800px;">
+        <div class="container" style="max-width: 900px;">
             
             <div class="text-center">
                 <img src="images/header.svg" alt="DiFlowDubber" style="max-width: 100%; height: auto;">
             </div>
-            <h2 class="text-center">
+            <h2 class="text-center" style="font-weight: 750;">
                 Discrete Flow Matching for Automated Video Dubbing via Cross-Modal Alignment and Synchronization
             </h2>
                 
         </div>
-        <div><center><h5>🌟 <b>CVPR 2026 Findings</b> 🌟
-        </h5></center></div>
+        <div style="text-align: center; margin: 12px 0;">
+            <span class="cvpr-badge">🌟 CVPR 2026 Findings 🌟</span>
+        </div>
         
         <div class="container" style="max-width: 850px;font-size: 18px;text-align: center;">
             
-                <a href="https://nngocson2002.github.io/">Ngoc-Son Nguyen<sup>1</sup></a>
+                <a class="author-link" href="https://nngocson2002.github.io/">Ngoc-Son Nguyen<sup>1</sup></a>
                 &nbsp&nbsp&nbsp
-                <a href="https://thanhtvt.github.io/">Thanh V. T. Tran<sup>1</sup></a>
+                <a class="author-link" href="https://thanhtvt.github.io/">Thanh V. T. Tran<sup>1</sup></a>
                 &nbsp&nbsp&nbsp
-                <a href="https://choijeongsoo.github.io/">Jeongsoo Choi<sup>2</sup></a>
+                <a class="author-link" href="https://choijeongsoo.github.io/">Jeongsoo Choi<sup>2</sup></a>
                 &nbsp&nbsp&nbsp
-                <a href="https://scholar.google.com/citations?user=sGFCHdcAAAAJ&hl=en">Hieu-Nghia Huynh-Nguyen<sup>1</sup></a>
+                <a class="author-link" href="https://scholar.google.com/citations?user=sGFCHdcAAAAJ&hl=en">Hieu-Nghia Huynh-Nguyen<sup>1</sup></a>
                 &nbsp&nbsp&nbsp
 
         </div>
         <div class="container" style="max-width: 786px;font-size: 18px;text-align: center;">
-            <a href="https://scholar.google.com/citations?user=JiKBo6UAAAAJ&hl=en">Truong-Son Hy<sup>3</sup></a>
+            <a class="author-link" href="https://scholar.google.com/citations?user=JiKBo6UAAAAJ&hl=en">Truong-Son Hy<sup>3</sup></a>
             &nbsp&nbsp&nbsp
-            <a href="https://scholar.google.com/citations?user=rJe1704AAAAJ&hl=en">Van Nguyen<sup>1</sup></a>
+            <a class="author-link" href="https://scholar.google.com/citations?user=rJe1704AAAAJ&hl=en">Van Nguyen<sup>1</sup></a>
         </div>
         <div class="container" style="max-width: 768px;text-align: center;">
             1. <img src="./images/icon/fpt_logo.png" alt="FPT Software" style="max-height: 65px; max-width: 100%;">    
@@ -712,10 +763,11 @@ td.gif {
         <div class="row" style="max-width: 768px;">
             <div class="col-md-12">
                 <h2>💡 Abstract</h2>
-                <p style="text-align: justify;">
-                    Video dubbing requires content accuracy, expressive prosody, high-quality acoustics, and precise lip synchronization, yet existing approaches struggle on all four fronts. To address these issues, we propose <strong>DiFlowDubber</strong>, the first video dubbing framework built upon a discrete flow matching backbone with a novel two-stage training strategy. In the first stage, a zero-shot text-to-speech (TTS) system is pre-trained on large-scale corpora, where a deterministic architecture captures linguistic structures, and the Discrete Flow-based Prosody-Acoustic (DFPA) module models expressive prosody and realistic acoustic characteristics. In the second stage, we propose the Content-Consistent Temporal Adaptation (CCTA) to transfer TTS knowledge to the dubbing domain: its Synchronizer enforces cross-modal alignment for lip-synchronized speech. Complementarily, the Face-to-Prosody Mapper (FaPro) conditions prosody on facial expressions, whose outputs are then fused with those of the Synchronizer to construct rich, fine-grained multimodal embeddings that capture prosody-content correlations, guiding the DFPA to generate expressive prosody and acoustic tokens for content-consistent speech. Experiments on two benchmark datasets demonstrate that DiFlowDubber outperforms prior methods across multiple evaluation metrics.
-                </p>
-
+                <div style="border: 1px solid #dee2e6; border-radius: 10px; padding: 20px 28px; background-color: #f8f9fa; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <p style="text-align: justify; margin-bottom: 0;">
+                        Video dubbing requires content accuracy, expressive prosody, high-quality acoustics, and precise lip synchronization, yet existing approaches struggle on all four fronts. To address these issues, we propose <strong>DiFlowDubber</strong>, the first video dubbing framework built upon a discrete flow matching backbone with a novel two-stage training strategy. In the first stage, a zero-shot text-to-speech (TTS) system is pre-trained on large-scale corpora, where a deterministic architecture captures linguistic structures, and the Discrete Flow-based Prosody-Acoustic (DFPA) module models expressive prosody and realistic acoustic characteristics. In the second stage, we propose the Content-Consistent Temporal Adaptation (CCTA) to transfer TTS knowledge to the dubbing domain: its Synchronizer enforces cross-modal alignment for lip-synchronized speech. Complementarily, the Face-to-Prosody Mapper (FaPro) conditions prosody on facial expressions, whose outputs are then fused with those of the Synchronizer to construct rich, fine-grained multimodal embeddings that capture prosody-content correlations, guiding the DFPA to generate expressive prosody and acoustic tokens for content-consistent speech. Experiments on two benchmark datasets demonstrate that DiFlowDubber outperforms prior methods across multiple evaluation metrics.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
