@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="50" cy="50" r="50"/>
+    </clipPath>
+    <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2ecbba"/>
+      <stop offset="100%" stop-color="#45d4c2"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#circle-clip)">
+    <!-- Sky -->
+    <rect width="100" height="100" fill="url(#sky-grad)"/>
+
+    <!-- Mountain back-left -->
+    <polygon points="10,75 35,28 58,75" fill="#c0623a"/>
+    <!-- Shadow face back-left -->
+    <polygon points="35,28 44,50 35,75 10,75" fill="#a04e2e"/>
+    <!-- Crack back-left -->
+    <polygon points="28,55 32,42 36,55 33,62" fill="#8b3e22"/>
+
+    <!-- Mountain back-right -->
+    <polygon points="42,75 68,22 92,75" fill="#b85a34"/>
+    <!-- Shadow face back-right -->
+    <polygon points="68,22 76,45 68,75 42,75" fill="#954828"/>
+    <!-- Crack back-right -->
+    <polygon points="60,58 65,44 70,58 66,66" fill="#7a3a1e"/>
+
+    <!-- Bushes / green shrubs at bottom -->
+    <ellipse cx="10" cy="80" rx="12" ry="9" fill="#3dba2e"/>
+    <ellipse cx="24" cy="83" rx="13" ry="10" fill="#4dcf3a"/>
+    <ellipse cx="38" cy="81" rx="11" ry="8" fill="#3dba2e"/>
+    <ellipse cx="50" cy="84" rx="13" ry="10" fill="#4dcf3a"/>
+    <ellipse cx="64" cy="81" rx="11" ry="8" fill="#3dba2e"/>
+    <ellipse cx="76" cy="83" rx="13" ry="10" fill="#4dcf3a"/>
+    <ellipse cx="90" cy="80" rx="12" ry="9" fill="#3dba2e"/>
+
+    <!-- Cloud left -->
+    <ellipse cx="18" cy="22" rx="9" ry="5" fill="white"/>
+    <ellipse cx="12" cy="24" rx="6" ry="4" fill="white"/>
+    <ellipse cx="24" cy="24" rx="6" ry="4" fill="white"/>
+
+    <!-- Cloud right -->
+    <ellipse cx="72" cy="18" rx="10" ry="5" fill="white"/>
+    <ellipse cx="65" cy="20" rx="6" ry="4" fill="white"/>
+    <ellipse cx="79" cy="20" rx="7" ry="4" fill="white"/>
+
+    <!-- Cloud top center -->
+    <ellipse cx="50" cy="12" rx="8" ry="4" fill="white"/>
+    <ellipse cx="44" cy="14" rx="5" ry="3" fill="white"/>
+    <ellipse cx="56" cy="14" rx="5" ry="3" fill="white"/>
+  </g>
+</svg>
