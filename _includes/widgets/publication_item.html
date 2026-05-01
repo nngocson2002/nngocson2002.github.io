@@ -24,7 +24,11 @@
             </p>
             
             <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
-            
+
+            {%- if item.note -%}
+            <p class="mt-0 mb-0 small text-muted fst-italic">{{ item.note }}</p>
+            {%- endif -%}
+
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                 {% for link in item.links %}
                 {% if link[1].url %}
@@ -61,7 +65,11 @@
             </p>
             
             <p class="mt-0 mb-0 small text-muted d-none d-sm-block">{{ item.abstract }}</p>
-            
+
+            {%- if item.note -%}
+            <p class="mt-0 mb-0 small text-muted fst-italic d-none d-sm-block">{{ item.note }}</p>
+            {%- endif -%}
+
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                 {% for link in item.links %}
                 {% if link[1].url %}
